@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>휴가계획서 등록</title>
+    <meta charset="utf-8">
+    <link href="../static/css/bootstrap.min.css"
+          th:href="@{/static/css/bootstrap.min.css}" rel="stylesheet">
+    <style>
+        .container {
+          max-width: 800px;
+          height : 800px;
+        }
+        span{
+          color: red;
+        }
+        div {
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h4 class="mb-3">휴가계획서 등록</h4>
+
+    <form action="board.html" th:action method="post">
+        <div>
+            <label for="author">작성자</label> <span th:text="${valid_title}"></span>
+            <input type="text" id="author" name="author" class="form-control"
+                   value="진은혜" th:value="${author}" readonly>
+        </div>
+
+        <div>
+            <label for="approver">결재자</label> <span th:text="${valid_content}"></span>
+            <input type="text" id="approver" name="approver" class="form-control"
+                   value="정혜미" th:value="${approver}" readonly>
+        </div>
+
+        <div>
+            <label for="leave">휴가 날짜</label> <span th:text="${valid_date}"></span>
+            <input type="date" id="leave_st" name="leave_st"
+                   value="2023-08-21" th:value="${leave_st}" style="width:200px" readonly> ~
+            <input type="date" id="leave_end" name="leave_end"
+                   value="2023-08-25" th:value="${leave_end}" style="width:200px" readonly>
+        </div>
+
+        <div>
+            <label for="type">구분</label> <span th:text="${valid_title}"></span>
+                <input type="text" name="type" class="form-control"
+                       value="연차" th:value="${leave_type}" readonly>연차
+        </div>
+
+        <div>
+            <label for="content">내용</label> <span th:text="${valid_content}"></span>
+            <textarea id="content" name="content" class="form-control"
+                      value="쉬고싶어요" th:value="${leave_reason}" readonly></textarea>
+        </div>
+
+        <div>
+            <label for="status">상태</label> <span th:text="${valid_title}"></span>
+            <input type="text" id="status" name="status" class="form-control"
+                   value="반려" th:value="${status}" readonly>
+        </div>
+
+        <div>
+            <label for="status">사유</label> <span th:text="${valid_title}"></span>
+            <textarea type="text" id="reason" name="reason" class="form-control"
+                      value="뭐 했다고 쉬냐" th:value="${reason}" readonly></textarea>
+        </div>
+
+
+
+
+        <hr class="my-4">
+
+        <div class="row">
+<!--            <div class="col">-->
+<!--                <button class="w-100 btn btn-primary btn-lg" type="submit">게시글 등록</button>-->
+<!--            </div>-->
+
+            <div class="col">
+                <button class="w-100 btn btn-secondary btn-lg"
+                        onclick="location.href='boardList.html'"
+                        th:onclick="|location.href='@{/board}'|"
+                        type="button">뒤로가기</button>
+            </div>
+        </div>
+    </form>
+</div> <!-- /container -->
+</body>
+</html>
