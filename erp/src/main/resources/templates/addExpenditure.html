@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link href="../static/css/bootstrap.min.css"
+        th:href="@{/static/css/bootstrap.min.css}" rel="stylesheet">
+  <style>
+    .container {
+      max-width: 800px;
+    }
+    span{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="py-5 text-center">
+    <h2>지출결의서 등록</h2>
+  </div>
+
+  <h4 class="mb-3">지출결의서 입력</h4>
+
+  <form action="expenditure.html" th:action method="post">
+    <div>
+      <label for="name">작성자</label> <span th:text="${expenditure.name}"></span>
+      <input type="text" id="name" name="name" class="form-control" placeholder="작성자  " readonly>
+    </div>
+    <div>
+      <label for="create_dt">작성일자</label> <span th:text="${expenditure.create_dt}"></span>
+      <input type="text" id="create_dt" name="title" class="form-control" placeholder="작성일자" readonly>
+    </div>
+    <div>
+      <label for="title">제목</label> <span th:text="${expenditure_title}"></span>
+      <input type="text" id="title" name="title" class="form-control" placeholder="제목을 입력하세요">
+    </div>
+    <div>
+      <label for="approver">결재자</label> <span th:text="${expenditure.approver}"></span>
+      <input type="text" id="approver" name="approver" class="form-control" placeholder="결재자를 선택해주세요">
+    </div>
+
+    <div>
+      <label for="payment_dt">결제일자</label> <span th:text="${expenditure.payment_dt}"></span>
+      <input id="payment_dt" name="payment_dt" class="form-control" placeholder="결제일자를 입력하세요"></input>
+    </div>
+    <div>
+      <label for="text">사용내용</label> <span th:text="${expenditure.text}"></span>
+      <input type="text" id="text" name="text" class="form-control" placeholder="사용내역을 입력하세요">
+    </div>
+    <div>
+      <label for="amount">금액</label> <span th:text="${expenditure.amount}"></span>
+      <input type="text" id="amount" name="amount" class="form-control" placeholder="금액을 입력하세요">
+    </div>
+
+
+
+    <hr class="my-4">
+
+    <div class="row">
+      <div class="col">
+        <button class="w-100 btn btn-primary btn-lg" type="submit">지출결의서 등록</button>
+      </div>
+
+      <div class="col">
+        <button class="w-100 btn btn-secondary btn-lg"
+                onclick="location.href='expenditure.html'"
+                th:onclick="|location.href='@{/approval/expenditure}'|"
+                type="button">취소</button>
+      </div>
+    </div>
+  </form>
+</div> <!-- /container -->
+</body>
+</html>
