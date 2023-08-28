@@ -1,4 +1,4 @@
-package project.onepoint.erp.Login;
+package project.onepoint.erp.Login.dto.req;
 
 import lombok.Data;
 
