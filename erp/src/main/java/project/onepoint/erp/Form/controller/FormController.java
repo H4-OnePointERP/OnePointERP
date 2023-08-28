@@ -7,10 +7,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class FormController {
 
-    @RequestMapping("/main.do")
+    @RequestMapping("/dashboard")
     public ModelAndView viewMain(){
 
-        ModelAndView mv = new ModelAndView("main");
+        ModelAndView mv = new ModelAndView("dashboard");
 
         return mv;
     }

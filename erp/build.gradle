@@ -32,6 +32,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.3.1'
+	implementation 'org.springframework.session:spring-session-data-redis' // 이 부분을 추가해주세요
 }
 
 tasks.named('test') {

@@ -22,6 +22,8 @@ spring:
     port: 6379
     host: choi1994.duckdns.org
     password: 1234
+  session:
+    store-type: redis
 
 mybatis:
   configuration:
