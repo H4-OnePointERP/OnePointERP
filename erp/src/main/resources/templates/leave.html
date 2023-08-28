@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>품의서 작성</title>
+    <title>휴가계획서 작성</title>
     <meta charset="utf-8">
     <link href="../static/css/bootstrap.min.css"
           th:href="@{/static/css/bootstrap.min.css}" rel="stylesheet">
@@ -12,12 +12,16 @@
         span{
           color: red;
         }
+        div {
+            margin-top: 20px;
+        }
+
     </style>
 </head>
 <body>
 <div class="container">
 
-    <h4 class="mb-3">품의서 등록</h4>
+    <h4 class="mb-3">휴가계획서 등록</h4>
 
     <form action="board.html" th:action method="post">
         <div>
@@ -26,13 +30,21 @@
         </div>
 
         <div>
-            <label for="date">날짜</label> <span th:text="${valid_title}"></span>
-            <input type="text" id="date" name="date" class="form-control" placeholder="2023/08/28" readonly>
+            <label for="approver">결재자</label> <span th:text="${valid_content}"></span>
+            <input type="text" id="approver" name="approver" class="form-control" placeholder="정혜미" readonly>
         </div>
 
         <div>
-            <label for="title">제목</label> <span th:text="${valid_title}"></span>
-            <input type="text" id="title" name="title" class="form-control" placeholder="제목을 입력하세요">
+            <label for="leave">휴가 날짜</label> <span th:text="${valid_date}"></span>
+            <input type="date" id="leave_st" name="leave_st" style="width:200px"> ~
+            <input type="date" id="leave_end" name="leave_end" style="width:200px">
+        </div>
+
+        <div>
+            <label for="type">구분</label> <span th:text="${valid_title}"></span>
+                <input type="radio" name="type" value="연차">연차
+                <input type="radio" name="type" value="월차">월차
+                <input type="radio" name="type" value="반차">반차
         </div>
 
         <div>
@@ -40,10 +52,7 @@
             <textarea id="content" name="content" class="form-control" placeholder="내용을 입력하세요"></textarea>
         </div>
 
-        <div>
-            <label for="approver">결재자</label> <span th:text="${valid_content}"></span>
-            <input type="text" id="approver" name="approver" class="form-control" placeholder="정혜미" readonly>
-        </div>
+
 
 
         <hr class="my-4">
