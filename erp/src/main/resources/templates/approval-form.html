@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -18,28 +18,28 @@
     </style>
 </head>
 <body>
-<div class="container" style="background-color: #C6CDDE; max-width: 800px;
+<div class="container" style="background-color: #5a626a; max-width: 800px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);">
 <form>
-    <div class="py-lg-5 text-center">
-        <h2>결제 종류 선택</h2>
+    <div class="py-lg-5 text-center" style="margin-bottom: 30px">
+        <h2 style="color: #ffffff">결제 종류 선택</h2>
     </div>
     <div style=" display: flex; justify-content: center; margin-bottom: 20px;">
-    <div class="form-check form-check-inline">
+        <div class="form-check form-check-inline" style="font-size: 30px; color: #ffffff; margin-right: 30px" >
         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-        <label class="form-check-label" for="inlineRadio1" style="font-size: 1.5rem;">지출결의서</label>
+        <label class="form-check-label" for="inlineRadio1">지출결의서</label>
     </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-        <label class="form-check-label" for="inlineRadio2" style="font-size: 1.5rem;">품의서</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-        <label class="form-check-label" for="inlineRadio3" style="font-size: 1.5rem;">휴가계획서</label>
-    </div>
+        <div class="form-check form-check-inline" style="font-size: 30px; color: #ffffff; margin-right: 30px">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+            <label class="form-check-label" for="inlineRadio2">품의서</label>
+        </div>
+        <div class="form-check form-check-inline" style="font-size: 30px; color: #ffffff; margin-right: 30px">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+            <label class="form-check-label" for="inlineRadio3">휴가계획서</label>
+        </div>
     </div>
     <br/>
     <br/>

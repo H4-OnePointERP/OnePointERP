@@ -6,17 +6,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import project.onepoint.erp.Login.dto.req.LoginDto;
 
+import javax.servlet.http.HttpSession;
+
 
 @RestController
 public class LoginController {
 
 
+    HttpSession httpSession;
 
-    @PostMapping("/login.do")
+    @PostMapping("/login")
     public ResponseEntity<String> getLogin(@RequestBody LoginDto loginDto) {
 
         if (loginDto.getId().equals("asdf") && loginDto.getPassword().equals("1234")) {
-            // 로그인 성공 시 세션에 사용자 아이디 저장
 
             return ResponseEntity.ok("{\"success\": true}");
         } else {
