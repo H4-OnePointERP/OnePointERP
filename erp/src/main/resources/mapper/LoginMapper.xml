@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project.onepoint.erp.login.mapper.LoginMapper">
+
+    <select id="selectEmployee" resultType="Employee">
+        SELECT      e.EMP_SEQ        empSeq,
+                    e.EMP_NAME       empName,
+                    e.EMP_ID         empId,
+                    e.EMP_PASSWORD   empPassword,
+                    e.EMP_GRADE      empGrade
+        FROM EMPLOYEE e
+        WHERE   e.EMP_ID = #{empId}
+        and     e.EMP_PASSWORD = #{empPassword}
+    </select>
+</mapper>
