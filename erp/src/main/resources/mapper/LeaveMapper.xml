@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="project.onepoint.erp.mapper.LeaveMapper">
+    
+    <insert id="createLeave" parameterType="LeaveReq">
+        <![CDATA[
+        INSERT INTO APP_LEAVE
+            (LEAVE_SEQ, APP_SEQ, LEAVE_END_DT, LEAVE_ST_DT, LEAVE_TEXT, LEAVE_TYPE)
+        VALUES
+            (LEAVE_SEQ,NEXTVAL, ?, #{LEAVE_END_DT}, #{LEAVE_ST_DT}, #{LEAVE_TEXT}, #{LEAVE_TYPE})
+        ]]>
+    </insert>
+
+    
+</mapper>
