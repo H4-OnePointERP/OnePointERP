@@ -9,20 +9,5 @@ import project.onepoint.erp.approval.service.LeaveService;
 
 @Controller
 public class LeaveController {
-    @Autowired
-    private LeaveService leaveService;
 
-    @GetMapping("/approval/leave")
-    public String openLeaveForm() {
-        return "/leave";
-    }
-
-    @PostMapping("/approval/leave")
-    public ModelAndView registerLeave() {
-        ModelAndView mv = new ModelAndView("/approval/leave-detail");
-        ApprovalReq req = leaveService.registerLeave();
-        mv.addObject(req);
-
-        return mv;
-    }
 }
