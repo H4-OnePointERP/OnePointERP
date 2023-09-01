@@ -7,12 +7,15 @@ import java.time.LocalDate;
 @Data
 public class LeaveRes {
 
-    private int emp_seq;
-    private int leave_seq;
-    private int app_seq;
-    private String leave_type;
-    private String leave_text;
-    private LocalDate leave_st_dt;
-    private LocalDate leave_end_dt;
-
+    private int empSeq;
+    private int leaveSeq;
+    private int appSeq;
+    private String leaveType;
+    private String leaveText;
+    private LocalDate leaveStDt;
+    private LocalDate leaveEndDt;
+    private String approver;
+    private String appStatus;
+    private String appType;
+    private String createdDT;
 }
