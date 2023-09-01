@@ -23,33 +23,29 @@
 
   <form action="expenditureDetail.html" th:action method="post">
     <div>
-      <label for="name">작성자</label> <span th:text="${expenditure.name}"></span>
+      <label for="name">작성자</label> <span th:text="${expenditureReq.name}"></span>
       <input type="text" id="name" name="name" class="form-control" placeholder="작성자  " readonly>
     </div>
     <div>
-      <label for="create_dt">작성일자</label> <span th:text="${expenditure.create_dt}"></span>
-      <input type="text" id="create_dt" name="title" class="form-control" placeholder="작성일자" readonly>
+      <label for="erTitle">제목</label> <span th:text="${expenditureReq.erTitle}"></span>
+      <input type="text" id="erTitle" name="erTitle" class="form-control" placeholder="제목을 입력하세요">
     </div>
     <div>
-      <label for="title">제목</label> <span th:text="${expenditure_title}"></span>
-      <input type="text" id="title" name="title" class="form-control" placeholder="제목을 입력하세요">
-    </div>
-    <div>
-      <label for="approver">결재자</label> <span th:text="${expenditure.approver}"></span>
+      <label for="approver">결재자</label> <span th:text="${expenditureReq.approver}"></span>
       <input type="text" id="approver" name="approver" class="form-control" placeholder="결재자를 선택해주세요">
     </div>
 
     <div>
-      <label for="payment_dt">결제일자</label> <span th:text="${expenditure.payment_dt}"></span>
-      <input id="payment_dt" name="payment_dt" class="form-control" placeholder="결제일자를 입력하세요"></input>
+      <label for="erDt">결제일자</label> <span th:text="${expenditureReq.erDt}"></span>
+      <input type="text" id="erDt" name="erDt" class="form-control" placeholder="결제일자를 입력하세요"></input>
     </div>
     <div>
-      <label for="text">사용내용</label> <span th:text="${expenditure.text}"></span>
-      <input type="text" id="text" name="text" class="form-control" placeholder="사용내역을 입력하세요">
+      <label for="erText">사용내용</label> <span th:text="${expenditureReq.erText}"></span>
+      <input type="text" id="erText" name="erText" class="form-control" placeholder="사용내역을 입력하세요">
     </div>
     <div>
-      <label for="amount">금액</label> <span th:text="${expenditure.amount}"></span>
-      <input type="text" id="amount" name="amount" class="form-control" placeholder="금액을 입력하세요">
+      <label for="erAmount">금액</label> <span th:text="${expenditureReq.erAmount}"></span>
+      <input type="text" id="erAmount" name="erAmount" class="form-control" placeholder="금액을 입력하세요">
     </div>
 
 
