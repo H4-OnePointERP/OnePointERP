@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="project.onepoint.erp.mapper.ApprovalMapper">
+    <insert id="insertApproval" parameterType="ExpenditureReq" useGeneratedKeys="true" keyProperty="APP_SEQ">
+        INSERT INTO APPROVAL
+        (
+        EMP_SEQ,
+        APPROVER,
+        APP_STATUS,
+        APP_TYPE
+        )
+        VALUES
+        (
+        #{EMP_SEQ},
+        #{APPROVER},
+        #{APP_STATUS},
+        #{APP_TYPE}
+        )
+    </insert>
+</mapper>
