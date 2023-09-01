@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import project.onepoint.erp.login.SessionConst;
 import project.onepoint.erp.login.dto.req.LoginReq;
 import project.onepoint.erp.login.dto.res.EmpSession;
 import project.onepoint.erp.login.model.Employee;
@@ -19,7 +20,6 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class LoginController {
 
-    public static final String LOGIN_MEMBER = "emp";
     private final LoginService loginService;
 
     @GetMapping("/")
@@ -50,7 +50,7 @@ public class LoginController {
                                 .empId(emp.getEmpId())
                                 .empName(emp.getEmpName())
                                 .build();
-        session.setAttribute(LOGIN_MEMBER, empSession);
+        session.setAttribute(SessionConst.LOGIN_MEMBER, empSession);
 
        return "redirect:/main";
     }
