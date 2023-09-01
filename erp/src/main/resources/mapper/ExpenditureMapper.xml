@@ -1,2 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="project.onepoint.erp.login.mapper.LoginMapper"></mapper>
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="project.onepoint.erp.mapper.ExpenditureMapper">
+    <insert id="insertExpenditure" parameterType="ExpenditureReq">
+        INSERT INTO APP_ER
+        (
+        APP_SEQ,
+        ER_TITLE,
+        ER_TEXT,
+        ER_AMOUNT,
+        ER_DT
+        )
+        VALUES
+        (
+        #{ER_SEQ},
+        #{APP_SEQ},
+        #{ER_TITLE},
+        #{ER_TEXT},
+        #{ER_AMOUNT},
+        #{ER_DT}
+        )
+    </insert>
+    <select id="selectExpenditureDetail" parameterType="int" resultType="ExpenditureRes">
+        select
+        (
+        A.EMP_SEQ empSeq,
+        A.CREATED_DT createdDt,
+        E.ER_TITLE erTitle,
+        A.APPROVER approver,
+        E.ER_DT erDt,
+        E.ER_TEXT erText,
+        E.ER_AMOUNT erAmount,
+        A.APP_STATUS appStatus,
+        A.REJECT_REASON rejectReason,
+        A.APP_TYPE appType
+        )
+        from APP_ER  E
+        inner join APPROVAL A
+        on E.APP_SEQ = A.APP_TYPE
+
+    </select>
+
+</mapper>
