@@ -18,4 +18,5 @@ public class LeaveRes {
     private String appStatus;
     private String appType;
     private String createdDT;
+    private String empName;
 }

@@ -18,5 +18,5 @@ public class LeaveReq {
     private String appType;
     private String approver;
     private String createdDT;
-
+    private String empName;
 }
