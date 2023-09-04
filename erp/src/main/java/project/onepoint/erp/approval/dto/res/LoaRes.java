@@ -1,9 +1,9 @@
-package project.onepoint.erp.approval.dto.req;
+package project.onepoint.erp.approval.dto.res;
 
 import lombok.Data;
 
 @Data
-public class LoaReq {
+public class LoaRes {
     private int empSeq;
     private int loaSeq;
     private int appSeq;
