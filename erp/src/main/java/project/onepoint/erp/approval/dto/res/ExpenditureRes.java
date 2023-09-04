@@ -2,22 +2,27 @@ package project.onepoint.erp.approval.dto.res;
 
 import lombok.Data;
 
+
+import java.time.LocalDateTime;
+
 @Data
 public class ExpenditureRes {
 
     private int empSeq;
 
-    private String createdDT;
+    private String empName;
+
+    private LocalDateTime createdDt;
 
     private String erTitle;
 
     private String approver;
 
-    private String erDt;
+    private LocalDateTime erDt;
 
     private String erText;
 
-    private String erAmount;
+    private int erAmount;
 
     private String appStatus;
 

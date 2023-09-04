@@ -3,6 +3,7 @@ package project.onepoint.erp.approval.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import project.onepoint.erp.approval.dto.req.ExpenditureReq;
@@ -27,13 +28,14 @@ public class ExpenditureController {
      * @return: view
      */
     @PostMapping("/approval/expenditure")
-    public String insertExpenditure(@ModelAttribute ExpenditureReq expenditureReq,
+    public String insertExpenditure(@ModelAttribute("expenditureReq") ExpenditureReq expenditureReq,
                                     Model model, HttpServletRequest request){
 
         EmpSession empSession = (EmpSession) request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
         expenditureReq.setEmpSeq(empSession.getEmpSeq());
 
         ExpenditureRes res = expenditureService.insertExpenditure(expenditureReq);
+        res.setEmpName(empSession.getEmpName());
         if(res!=null){
             model.addAttribute("expenditureRes",res);
             return "approval/expenditureDetail";
@@ -43,6 +45,12 @@ public class ExpenditureController {
 
     }
 
+    @GetMapping("/approval/expenditureForm")
+    public String openExpenditureForm(@ModelAttribute("expenditureReq") ExpenditureReq expenditureReq, HttpServletRequest request){
+        EmpSession empSession = (EmpSession) request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
+        expenditureReq.setEmpName(empSession.getEmpName());
+        return "approval/expenditureForm";
+    }
 
 
 
