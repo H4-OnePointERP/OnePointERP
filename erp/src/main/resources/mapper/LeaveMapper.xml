@@ -3,7 +3,36 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="project.onepoint.erp.mapper.LeaveMapper">
+    <insert id="insertLeave" parameterType="LeaveReq">
+        INSERT INTO APP_LEAVE
+            (leave_seq, app_seq, leave_type, leave_text, leave_st_dt, leave_end_dt)
+        VALUES
+            (
+            leave_seq.NEXTVAL,
+            ${app_seq},
+            ${leave_type},
+            ${leave_text},
+            ${leave_st_dt},
+            ${leave_end_dt}
+            )
+    </insert>
+    <select id="selectLeaveByAppSeq" parameterType="int" resultType="LeaveRes">
+        select
+        (
+        A.app_seq,
+        A.approver,
+        A.app_status,
+        A.reject_reason,
+        L.app_seq,
+        L.leave_type,
+        L.leave_text,
+        L.leave_st_dt,
+        L.leave_end_dt
+        )
+        from APP_LEAVE L
+        inner join APPROVAL A
+        on L.app_seq = A.app_seq
 
-
+    </select>
     
 </mapper>
