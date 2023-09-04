@@ -3,6 +3,7 @@ package project.onepoint.erp.approval.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import project.onepoint.erp.approval.dto.res.DashBoardRes;
 import project.onepoint.erp.approval.service.ApprovalService;
@@ -33,5 +34,10 @@ public class ApprovalController {
         mv.addObject("result", result);
 
         return mv;
+    }
+
+    @RequestMapping("/approval/register")
+    public String viewRegister(){
+        return "approval-form";
     }
 }
