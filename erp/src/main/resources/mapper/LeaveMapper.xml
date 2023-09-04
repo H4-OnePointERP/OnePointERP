@@ -34,5 +34,5 @@
         on L.app_seq = A.app_seq
 
     </select>
-    
+
 </mapper>

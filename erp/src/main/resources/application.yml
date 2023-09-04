@@ -16,7 +16,7 @@ spring:
   datasource:
     username: c##test
     password: test123!
-    url: jdbc:oracle:thin:@choi1994.duckdns.org:1521:ee
+    url: jdbc:oracle:thin:@ec2-13-209-69-174.ap-northeast-2.compute.amazonaws.com:1521:xe
     driver-class-name: oracle.jdbc.OracleDriver
 
 mybatis:
