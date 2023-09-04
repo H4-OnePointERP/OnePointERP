@@ -14,16 +14,10 @@ spring:
       restart:
         enabled: true
   datasource:
-    username: choi
-    password: choi123!
-    url: jdbc:oracle:thin:@choi1994.duckdns.org:9999:ee
+    username: c##test
+    password: test123!
+    url: jdbc:oracle:thin:@ec2-13-209-69-174.ap-northeast-2.compute.amazonaws.com:1521:xe
     driver-class-name: oracle.jdbc.OracleDriver
-  redis:
-    port: 6379
-    host: choi1994.duckdns.org
-    password: 1234
-  session:
-    store-type: redis
 
 mybatis:
   configuration:
