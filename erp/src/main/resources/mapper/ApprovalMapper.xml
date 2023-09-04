@@ -4,10 +4,10 @@
         SELECT
             SUM(CASE WHEN APP_STATUS='미승인' THEN 1 ELSE 0 END) AS "waitingApprovalCount",
             SUM(CASE WHEN APP_STATUS='반려' THEN 1 ELSE 0 END) AS "rejectedApprovalCount",
-            (SELECT COUNT(*) FROM APPROVAL WHERE APPROVER  = #{id}AND APP_STATUS = '미승인') AS "pendingApprovalCount"
-            from APPROVAL
-            WHERE EMP_ID = #{id}
-        GROUP BY EMP_ID, APPROVER
+            (SELECT COUNT(*) FROM APPROVAL WHERE APPROVER = #{id} AND APP_STATUS = '승인대기') AS "pendingApprovalCount"
+        from APPROVAL
+        WHERE EMP_SEQ = #{id}
+        GROUP BY EMP_SEQ, APPROVER
     </select>
 
     <insert id="insertApproval" parameterType="ApprovalReq">

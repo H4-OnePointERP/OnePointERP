@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 800px;
+        }
+    </style>
+    <title></title>
+</head>
+<body>
+<div class="container bg-light" style="max-width: 800px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);">
+    <form action="javascript:submitForm()" >
+        <div class="py-lg-5 text-center" style="margin-bottom: 30px">
+            <h2>결제 종류 선택</h2>
+        </div>
+        <div style=" display: flex; justify-content: center; margin-bottom: 20px;">
+            <div class="form-check form-check-inline" style="font-size: 30px; margin-right: 30px" >
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="expenditureForm">
+                <label class="form-check-label" for="inlineRadio1">지출결의서</label>
+            </div>
+            <div class="form-check form-check-inline" style="font-size: 30px; margin-right: 30px">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="loaForm">
+                <label class="form-check-label" for="inlineRadio2">품의서</label>
+            </div>
+            <div class="form-check form-check-inline" style="font-size: 30px; margin-right: 30px">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="leaveForm">
+                <label class="form-check-label" for="inlineRadio3">휴가계획서</label>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div style="display: flex; justify-content: right;">
+            <button type="submit" class="btn btn-secondary" style="margin-bottom: 20px; margin-right: 20px;">선택</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    function submitForm() {
+        var radioValue = document.querySelector('input[name="inlineRadioOptions"]:checked').value;
+        window.location.href = "/approval/" + radioValue;
+    }
+</script>
+
+</body>
+</html>
+
