@@ -38,6 +38,6 @@ public class ApprovalController {
 
     @RequestMapping("/approval/register")
     public String viewRegister(){
-        return "approval-form";
+        return "approvalForm";
     }
 }
