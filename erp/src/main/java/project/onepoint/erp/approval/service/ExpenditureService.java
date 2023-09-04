@@ -18,7 +18,7 @@ public class ExpenditureService {
     /**
      * 지출결의서 등록하는 API
      * @param req: 지출결의서 작성 DTO
-     * @return
+     * @return : 지출결의서 상세 응답 DTO
      */
     public ExpenditureRes insertExpenditure(ExpenditureReq req) {
         ApprovalReq approvalReq = ApprovalReq.builder()
