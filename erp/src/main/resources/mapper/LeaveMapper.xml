@@ -3,17 +3,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="project.onepoint.erp.mapper.LeaveMapper">
+
+
     <insert id="insertLeave" parameterType="LeaveReq">
+        <selectKey keyProperty="leaveSeq" resultType="int" order="BEFORE">
+            select leave_seq.nextVAL from dual
+        </selectKey>
         INSERT INTO APP_LEAVE
             (leave_seq, app_seq, leave_type, leave_text, leave_st_dt, leave_end_dt)
         VALUES
             (
-            leave_seq.NEXTVAL,
-            ${app_seq},
-            ${leave_type},
-            ${leave_text},
-            ${leave_st_dt},
-            ${leave_end_dt}
+            #{leaveSeq},
+            #{appSeq},
+            #{leaveType},
+            #{leaveText},
+            #{leaveStDt},
+            #{leaveEndDt}
             )
     </insert>
     <select id="selectLeaveByAppSeq" parameterType="int" resultType="LeaveRes">

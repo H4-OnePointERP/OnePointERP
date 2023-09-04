@@ -23,7 +23,7 @@
 
     <h4 class="mb-3">휴가계획서 등록</h4>
 
-    <form action="/approval/leave" th:action method="post">
+    <form action="/approval/leave" th:action ="@{/approval/leave}" method="post">
         <div>
             <label for="empName">작성자</label>
             <input type="text" id="empName" name="empName" class="form-control"
@@ -37,9 +37,9 @@
 
         <div>
             <label for="leaveStDt">휴가 시작 날짜</label>
-            <input type="date" id="leaveStDt" name="leaveStDt" style="width:200px"> ~
+            <input type="text" id="leaveStDt" name="leaveStDt" style="width:200px"> ~
             <label for="leaveEndDt">휴가 종료 날짜</label>
-            <input type="date" id="leaveEndDt" name="leaveEndDt" style="width:200px">
+            <input type="text" id="leaveEndDt" name="leaveEndDt" style="width:200px">
         </div>
 
         <div>

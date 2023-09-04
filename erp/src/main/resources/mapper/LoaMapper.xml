@@ -9,9 +9,9 @@
         VALUES
         (
         loa_seq.NEXTVAL,
-        ${app_seq},
-        ${loa_title},
-        ${loa_text}
+        #{app_seq},
+        #{loa_title},
+        #{loa_text}
         )
     </insert>
     <select id="selectLoaByAppSeq" parameterType="int" resultType="LoaRes">
@@ -28,6 +28,7 @@
         from APP_LOA L
         inner join APPROVAL A
         on L.app_seq = A.app_seq
+        WHERE A.app_seq = #{app_seq}
 
     </select>
 </mapper>
