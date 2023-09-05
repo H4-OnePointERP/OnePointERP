@@ -31,10 +31,11 @@
       <input type="text" id="erTitle" name="erTitle" class="form-control" placeholder="제목을 입력하세요">
     </div>
     <div>
-      <label for="approver">결재자</label> <span th:text="${expenditureReq.approver}"></span>
-      <input type="text" id="approver" name="approver" class="form-control" placeholder="결재자를 선택해주세요">
+        <select th:name="approver">
+            <option >결재자를 선택해주세요</option>
+            <option th:each="approver : ${approverList}" th:value="${approver.APPROVERSEQ}" th:text="${approver.APPROVERNAME}"></option>
+        </select>
     </div>
-
     <div>
       <label for="erDt">결제일자</label> <span th:text="${expenditureReq.erDt}"></span>
       <input type="text" id="erDt" name="erDt" class="form-control" placeholder="결제일자를 입력하세요"></input>
