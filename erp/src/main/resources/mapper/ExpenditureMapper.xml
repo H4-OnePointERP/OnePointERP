@@ -27,7 +27,7 @@
     </insert>
     <select id="selectExpenditureByAppSeq" parameterType="int" resultType="ExpenditureRes">
         SELECT
-        A.EMP_ID AS empId,
+        A.EMP_SEQ AS empSeq,
         A.CREATED_DT AS createdDt,
         E.ER_TITLE AS erTitle,
         A.APPROVER AS approver,

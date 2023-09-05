@@ -13,7 +13,7 @@ public class ApprovalReq {
 
     private int empSeq;
 
-    private String approver;
+    private int approver;
 
     private String appStatus;
 
