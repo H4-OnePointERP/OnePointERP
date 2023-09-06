@@ -2,6 +2,8 @@ package project.onepoint.erp.approval.dto.req;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public class LoaReq {
     private int empSeq;
@@ -11,7 +13,7 @@ public class LoaReq {
     private String loa_text;
     private String appStatus;
     private String appType;
-    private String approver;
-    private String createdDT;
+    private int approver;
+    private LocalDateTime createdDT;
     private String empName;
 }

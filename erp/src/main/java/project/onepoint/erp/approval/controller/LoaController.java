@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 import project.onepoint.erp.approval.dto.req.LoaReq;
 import project.onepoint.erp.approval.dto.res.LoaRes;
+import project.onepoint.erp.approval.service.ApprovalService;
 import project.onepoint.erp.approval.service.LoaService;
 import project.onepoint.erp.login.SessionConst;
 import project.onepoint.erp.login.dto.res.EmpSession;
@@ -18,13 +20,18 @@ import javax.servlet.http.HttpServletRequest;
 @RequiredArgsConstructor
 public class LoaController {
 
+    private final ApprovalService approvalService;
     private final LoaService loaService;
 
     @GetMapping("/approval/loaForm")
-    public String openLeaveForm(@ModelAttribute("loaReq") LoaReq form, HttpServletRequest request) {
+    public ModelAndView openLeaveForm(@ModelAttribute("loaReq") LoaReq loaReq, HttpServletRequest request) {
         EmpSession empSession = (EmpSession) request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
-        form.setEmpName(empSession.getEmpName());
-        return "loaForm";
+        loaReq.setEmpName(empSession.getEmpName());
+
+        ModelAndView mv = new ModelAndView("approval/loaForm");
+        mv.addObject("approverList", approvalService.selectApproverList(empSession.getEmpSeq()));
+
+        return mv;
     }
 
     @PostMapping("/approval/loa")
