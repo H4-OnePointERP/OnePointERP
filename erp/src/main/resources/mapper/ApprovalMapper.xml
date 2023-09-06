@@ -1,13 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project.onepoint.erp.approval.mapper.ApprovalMapper">
     <select id="getDashBoard" parameterType="int" resultType="DashBoardRes">
+        SELECT SUM(CASE WHEN APP_STATUS='미승인' AND FLG_CD='01' THEN 1
+                        ELSE 0
+            END) AS "incompleteApprovalCount"
+             , SUM(CASE WHEN APP_STATUS='반려' AND FLG_CD='01' THEN 1
+                        ELSE 0
+            END) AS "rejectedApprovalCount"
+             , SUM(CASE WHEN APP_STATUS='미승인' AND FLG_CD='02' THEN 1
+                        ELSE 0
+            END) AS "approvedApprovalCount"
+        FROM (SELECT '01' AS FLG_CD
+                   , EMP_SEQ AS EMP_SEQ
+                   , APP_STATUS
+              FROM APPROVAL
+              WHERE 1=1
+                AND EMP_SEQ= #{id}
+              UNION ALL
+              SELECT '02' AS FLG_CD
+                   , APPROVER AS EMP_SEQ
+                   , APP_STATUS
+              FROM APPROVAL
+              WHERE 1=1
+                AND APPROVER= #{id}
+             )
+        GROUP BY EMP_SEQ
+    </select>
+
+    <select id="getApprovalStatusList" parameterType="AppStatusListReq" resultType="GetApprovalListRes">
         SELECT
-            SUM(CASE WHEN APP_STATUS='미승인' THEN 1 ELSE 0 END) AS "waitingApprovalCount",
-            SUM(CASE WHEN APP_STATUS='반려' THEN 1 ELSE 0 END) AS "rejectedApprovalCount",
-            (SELECT COUNT(*) FROM APPROVAL WHERE APPROVER = #{id} AND APP_STATUS = '승인대기') AS "pendingApprovalCount"
-        from APPROVAL
-        WHERE EMP_SEQ = #{id}
-        GROUP BY EMP_SEQ, APPROVER
+        a.APP_SEQ AS appSeq,
+        e.EMP_NAME AS empName,
+        a.APP_STATUS AS appStatus,
+        a.APP_TYPE AS appType,
+        TO_CHAR(a.CREATED_DT, 'YYYY-MM-DD') AS createDate
+        FROM
+        APPROVAL a
+        JOIN
+        EMPLOYEE e ON a.EMP_SEQ = e.EMP_SEQ
+        <where>
+            <if test="status != null">
+                <choose>
+                    <when test="status == '승인요청'">
+                        AND a.APP_STATUS = '승인대기' AND a.APPROVER = #{empSeq}
+                    </when>
+                    <when test="status == '승인대기'">
+                        AND a.APP_STATUS = '승인대기'
+                    </when>
+                    <when test="status == '반려'">
+                        AND a.APP_STATUS = '반려'
+                    </when>
+                </choose>
+            </if>
+            <if test="(empSeq != null and status != '승인요청')">
+                AND a.EMP_SEQ = #{empSeq}
+            </if>
+        </where>
     </select>
 
     <insert id="insertApproval" parameterType="ApprovalReq">
