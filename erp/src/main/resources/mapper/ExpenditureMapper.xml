@@ -30,7 +30,7 @@
         A.EMP_SEQ AS empSeq,
         A.CREATED_DT AS createdDt,
         E.ER_TITLE AS erTitle,
-        A.APPROVER AS approver,
+        (SELECT EMP_NAME FROM EMPLOYEE WHERE EMP_SEQ = (SELECT approver FROM approval WHERE APP_SEQ=#{appSeq})) AS approver,
         E.ER_DT AS erDt,
         E.ER_TEXT AS erText,
         E.ER_AMOUNT AS erAmount,

@@ -25,7 +25,7 @@ public class ExpenditureService {
                 .empSeq(req.getEmpSeq())
                 .approver(req.getApprover())
                 .appStatus("승인대기")
-                .appType("expenditure").build();
+                .appType("APP_ER").build();
         if (approvalService.insertApproval(approvalReq) == 1) {
             req.setAppSeq(approvalReq.getAppSeq());
             if (expenditureMapper.insertExpenditure(req) == 1) {
