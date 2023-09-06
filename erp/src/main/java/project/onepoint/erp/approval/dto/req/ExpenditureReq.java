@@ -21,6 +21,6 @@ public class ExpenditureReq {
 
     private String erDt;
 
-    private int approver;
+    private String approver;
 
 }

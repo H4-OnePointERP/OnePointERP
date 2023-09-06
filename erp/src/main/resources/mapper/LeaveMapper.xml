@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="project.onepoint.erp.mapper.LeaveMapper">
+<mapper namespace="project.onepoint.erp.approval.mapper.LeaveMapper">
 
 
     <insert id="insertLeave" parameterType="LeaveReq">
@@ -10,7 +10,14 @@
             select leave_seq.nextVAL from dual
         </selectKey>
         INSERT INTO APP_LEAVE
-            (leave_seq, app_seq, leave_type, leave_text, leave_st_dt, leave_end_dt)
+            (
+            leave_seq,
+            app_seq,
+            leave_type,
+            leave_text,
+            leave_st_dt,
+            leave_end_dt
+            )
         VALUES
             (
             #{leaveSeq},
@@ -23,20 +30,22 @@
     </insert>
     <select id="selectLeaveByAppSeq" parameterType="int" resultType="LeaveRes">
         select
-        (
-        A.app_seq,
-        A.approver,
-        A.app_status,
-        A.reject_reason,
-        L.app_seq,
-        L.leave_type,
-        L.leave_text,
-        L.leave_st_dt,
-        L.leave_end_dt
-        )
+        A.app_seq AS appSeq,
+        (SELECT EMP_NAME FROM EMPLOYEE
+        WHERE EMP_SEQ =
+        (SELECT approver FROM approval
+        WHERE APP_SEQ=#{appSeq})) AS approver,
+        A.app_status AS appStatus,
+        A.reject_reason AS rejectReason,
+        L.app_seq AS appSeq,
+        L.leave_type AS leaveType,
+        L.leave_text AS leaveText,
+        L.leave_st_dt AS leaveStDt,
+        L.leave_end_dt AS leaveEndDt
         from APP_LEAVE L
         inner join APPROVAL A
         on L.app_seq = A.app_seq
+        WHERE A.APP_SEQ = #{appSeq}
 
     </select>
 
