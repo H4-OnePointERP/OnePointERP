@@ -31,4 +31,12 @@
         #{appType}
         )
     </insert>
+    <select id="selectApproverList" resultType="HashMap">
+        SELECT
+        EMP_NAME as approverName,
+        EMP_SEQ as approverSeq
+        FROM
+        EMPLOYEE
+        WHERE EMP_GRADE > (SELECT EMP_GRADE FROM EMPLOYEE WHERE EMP_SEQ = #{empSeq})
+    </select>
 </mapper>

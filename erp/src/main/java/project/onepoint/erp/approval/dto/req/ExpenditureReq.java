@@ -5,9 +5,13 @@ import lombok.Data;
 @Data
 public class ExpenditureReq {
 
+    private int erSeq;
+
     private int empSeq;
 
     private int appSeq;
+
+    private String empName;
 
     private String erTitle;
 
@@ -17,6 +21,6 @@ public class ExpenditureReq {
 
     private String erDt;
 
-    private String approver;
+    private int approver;
 
 }
