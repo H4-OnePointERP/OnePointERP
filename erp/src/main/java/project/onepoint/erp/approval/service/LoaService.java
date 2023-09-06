@@ -19,7 +19,7 @@ public class LoaService {
                 .empSeq(req.getEmpSeq())
                 .approver(req.getApprover())
                 .appStatus("승인대기")
-                .appType("loa").build();
+                .appType("APP_LOA").build();
         if (approvalService.insertApproval(approvalReq) == 1) {
             req.setAppSeq(approvalReq.getAppSeq());
             if (loaMapper.insertLoa(req) == 1) {

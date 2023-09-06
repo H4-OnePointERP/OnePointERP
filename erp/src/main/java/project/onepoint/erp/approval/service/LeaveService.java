@@ -19,7 +19,7 @@ public class LeaveService {
                 .empSeq(req.getEmpSeq())
                 .approver(req.getApprover())
                 .appStatus("승인대기")
-                .appType("leave").build();
+                .appType("APP_LEAVE").build();
         if (approvalService.insertApproval(approvalReq) == 1) {
             req.setAppSeq(approvalReq.getAppSeq());
             if (leaveMapper.insertLeave(req) == 1) {
