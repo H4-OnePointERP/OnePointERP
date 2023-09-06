@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="kr">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+<div class="container" style="max-width: 800px">
+    <div class="py-5 text-center">
+        <h2 th:text="${type}"></h2>
+    </div>
+
+    <hr class="my-4">
+    <div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>결재번호</th>
+                    <th>작성날짜</th>
+                    <th>결재타입</th>
+                    <th>작성자</th>
+                    <th th:if="${type != '승인요청'}">상태</th>
+                    <th th:if="${type == '승인요청'}">액션</th> <!-- 추가: 액션 열 -->
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="app : ${approvals}">
+                    <td><a th:href="@{/approval/detail?id={app.appSeq}}" th:text="${app.appSeq}"></a></td>
+                    <td th:text="${app.createDate}"></td>
+                    <td th:if="${app.appType == 'APP_ER'}" th:text="지출결의서"></td>
+                    <td th:if="${app.appType == 'APP_LEAVE'}" th:text="휴가계획서"></td>
+                    <td th:if="${app.appType == 'APP_LOA'}" th:text="품의서"></td>
+                    <td th:text="${app.empName}"></td>
+                    <td th:if="${type != '승인요청'}" th:text="${app.appStatus}"></td>
+                    <td th:if="${type == '승인요청'}">
+                        <input type="button" class="btn btn-success" value="승인"/>
+                        <input type="button" class="btn btn-danger" value="반려"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+</div> <!-- /container -->
+</body>
+</html>

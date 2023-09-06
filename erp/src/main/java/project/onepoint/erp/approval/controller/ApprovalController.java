@@ -3,12 +3,17 @@ package project.onepoint.erp.approval.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import project.onepoint.erp.approval.dto.req.AppStatusListReq;
 import project.onepoint.erp.approval.dto.res.DashBoardRes;
+import project.onepoint.erp.approval.dto.res.GetApprovalListRes;
 import project.onepoint.erp.approval.service.ApprovalService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class ApprovalController {
@@ -40,4 +45,27 @@ public class ApprovalController {
     public String viewRegister(){
         return "approvalForm";
     }
+
+    @GetMapping("/approval/list")
+    public ModelAndView getApprovalStatusList(@RequestParam String status, HttpServletRequest request) {
+
+        AppStatusListReq appStatusListReq = new AppStatusListReq();
+
+        appStatusListReq.setStatus(status);
+
+        ModelAndView mv = new ModelAndView("approvalTypeListForm");
+
+        project.onepoint.erp.login.dto.res.EmpSession empSession = (project.onepoint.erp.login.dto.res.EmpSession) request.getSession().getAttribute(project.onepoint.erp.login.SessionConst.LOGIN_MEMBER);
+
+        appStatusListReq.setEmpSeq(empSession.getEmpSeq());
+
+        List<GetApprovalListRes> result = approvalService.getApprovalStatusList(appStatusListReq);
+
+        mv.addObject("type", appStatusListReq.getStatus());
+
+        mv.addObject("approvals", result);
+
+        return mv;
+    }
+
 }

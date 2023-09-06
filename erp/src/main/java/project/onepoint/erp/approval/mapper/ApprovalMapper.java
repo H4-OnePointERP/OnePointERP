@@ -1,9 +1,11 @@
 package project.onepoint.erp.approval.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import project.onepoint.erp.approval.dto.req.AppStatusListReq;
 import project.onepoint.erp.approval.dto.req.ApprovalReq;
 import project.onepoint.erp.approval.dto.res.ApproverRes;
 import project.onepoint.erp.approval.dto.res.DashBoardRes;
+import project.onepoint.erp.approval.dto.res.GetApprovalListRes;
 
 import java.util.List;
 
@@ -14,4 +16,6 @@ public interface ApprovalMapper {
     DashBoardRes getDashBoard(int id);
 
     List<ApproverRes> selectApproverList(int empSeq);
+
+    List<GetApprovalListRes> getApprovalStatusList(AppStatusListReq appStatusListReq);
 }
