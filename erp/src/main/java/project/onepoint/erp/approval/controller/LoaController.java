@@ -24,7 +24,7 @@ public class LoaController {
     private final LoaService loaService;
 
     @GetMapping("/approval/loaForm")
-    public ModelAndView openLeaveForm(@ModelAttribute("loaReq") LoaReq loaReq, HttpServletRequest request) {
+    public ModelAndView openLoaForm(@ModelAttribute("loaReq") LoaReq loaReq, HttpServletRequest request) {
         EmpSession empSession = (EmpSession) request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
         loaReq.setEmpName(empSession.getEmpName());
 
@@ -35,7 +35,7 @@ public class LoaController {
     }
 
     @PostMapping("/approval/loa")
-    public String insertLeave(@ModelAttribute LoaReq loaReq,
+    public String insertLoa(@ModelAttribute("loaReq") LoaReq loaReq,
                               Model model, HttpServletRequest request) {
 
         EmpSession empSession = (EmpSession) request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
@@ -43,6 +43,7 @@ public class LoaController {
         loaReq.setEmpName(empSession.getEmpName());
 
         LoaRes res = loaService.insertLoa(loaReq);
+        res.setEmpName(empSession.getEmpName());
 
         if(res!=null) {
             model.addAttribute("loaRes", res);

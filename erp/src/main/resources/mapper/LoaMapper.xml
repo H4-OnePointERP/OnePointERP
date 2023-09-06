@@ -1,34 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="project.onepoint.erp.mapper.LoaMapper">
+<mapper namespace="project.onepoint.erp.approval.mapper.LoaMapper">
 
     <insert id="insertLoa" parameterType="LoaReq">
-        INSERT INTO APP_LEAVE
-        (loa_seq, app_seq, loa_title, loa_text)
+        <selectKey keyProperty="loaSeq" resultType="int" order="BEFORE">
+            select loa_seq.nextVAL from dual
+        </selectKey>
+        INSERT INTO APP_LOA
+        (
+        loa_seq,
+        app_seq,
+        loa_text,
+        loa_title
+        )
         VALUES
         (
-        loa_seq.NEXTVAL,
-        #{app_seq},
-        #{loa_title},
-        #{loa_text}
+        #{loaSeq},
+        #{appSeq},
+        #{loaText},
+        #{loaTitle}
         )
     </insert>
     <select id="selectLoaByAppSeq" parameterType="int" resultType="LoaRes">
         select
-        (
-        A.app_seq,
-        A.approver,
-        A.app_status,
-        A.reject_reason,
-        L.app_seq,
-        L.loa_title,
-        L.loa_text
-        )
+        A.app_seq AS appSeq,
+        A.approver AS approver,
+        A.app_status AS appStatus,
+        A.reject_reason AS rejectReason,
+        L.app_seq AS appSeq,
+        L.loa_title AS loaTitle,
+        L.loa_text AS loaText
         from APP_LOA L
         inner join APPROVAL A
         on L.app_seq = A.app_seq
-        WHERE A.app_seq = #{app_seq}
+        WHERE A.app_seq = #{appSeq}
 
     </select>
 </mapper>

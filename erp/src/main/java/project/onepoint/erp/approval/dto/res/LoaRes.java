@@ -9,11 +9,12 @@ public class LoaRes {
     private int empSeq;
     private int loaSeq;
     private int appSeq;
-    private String loa_title;
-    private String loa_text;
+    private String loaTitle;
+    private String loaText;
     private String appStatus;
     private String appType;
     private int approver;
     private LocalDateTime createdDT;
     private String empName;
+    private String rejectReason;
 }
