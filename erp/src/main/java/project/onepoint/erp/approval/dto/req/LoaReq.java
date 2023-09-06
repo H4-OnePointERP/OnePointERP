@@ -13,7 +13,7 @@ public class LoaReq {
     private String loaText;
     private String appStatus;
     private String appType;
-    private String approver;
+    private int approver;
     private LocalDateTime createdDT;
     private String empName;
 }
