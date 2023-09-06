@@ -31,7 +31,10 @@
     <select id="selectLeaveByAppSeq" parameterType="int" resultType="LeaveRes">
         select
         A.app_seq AS appSeq,
-        A.approver AS approver,
+        (SELECT EMP_NAME FROM EMPLOYEE
+        WHERE EMP_SEQ =
+        (SELECT approver FROM approval
+        WHERE APP_SEQ=#{appSeq})) AS approver,
         A.app_status AS appStatus,
         A.reject_reason AS rejectReason,
         L.app_seq AS appSeq,

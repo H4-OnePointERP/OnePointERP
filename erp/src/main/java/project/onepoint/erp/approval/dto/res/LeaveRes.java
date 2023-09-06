@@ -15,7 +15,7 @@ public class LeaveRes {
     private String leaveText;
     private LocalDateTime leaveStDt;
     private LocalDateTime leaveEndDt;
-    private int approver;
+    private String approver;
     private String appStatus;
     private String appType;
     private LocalDateTime createdDT;

@@ -15,7 +15,7 @@ public class LeaveReq {
     private String leaveText;
     private String leaveStDt;
     private String leaveEndDt;
-    private int approver;
+    private String approver;
     private LocalDateTime createdDT;
     private String empName;
 }
