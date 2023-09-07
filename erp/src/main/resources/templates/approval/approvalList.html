@@ -46,6 +46,38 @@
         document.body.appendChild(f);
         f.submit();
     }
+
+
+    function rejectApproval(type, appSeq){
+
+        var rejectReason = document.getElementById('rejectReason').value;
+        let f = document.createElement('form');
+
+        let obj;
+        obj = document.createElement('input');
+        obj.setAttribute('type', 'hidden');
+        obj.setAttribute('name', 'appSeq');
+        obj.setAttribute('value', appSeq);
+
+        let obj2
+        obj2 = document.createElement('input');
+        obj2.setAttribute('type', 'hidden');
+        obj2.setAttribute('name', 'rejectReason');
+        obj2.setAttribute('value', rejectReason);
+
+        f.appendChild(obj);
+        f.appendChild(obj2);
+        f.setAttribute('method', 'post');
+        f.setAttribute('action', '/approval/'+type);
+        document.body.appendChild(f);
+        f.submit();
+    }
+
+    function toggleRejectReasonInput() {
+        const inputDiv = document.getElementById('rejectReasonInput');
+        inputDiv.style.display = inputDiv.style.display === "none" ? "block" : "none";
+    }
+
 </script>
 <body>
 <div class="container" style="max-width: 800px">
@@ -85,8 +117,13 @@
                                     href="javascript:void(0);"
                                     th:attr="onclick='selectApproval(\'승인\', \'' + ${app.appSeq} + '\');'">승인</button>
                             <button type="button" class="btn btn-danger"
-                                    href="javascript:void(0);"
-                                    th:attr="onclick='selectApproval(\'반려\', \'' + ${app.appSeq} + '\');'">반려</button>
+                                    onclick="toggleRejectReasonInput()">반려</button>
+                            <div id="rejectReasonInput" style="display: none;">
+                                <input type="text" id="rejectReason" placeholder="반려 사유 입력">
+                                <button type="button" class="btn btn-secondary"
+                                        href="javascript:void(0);"
+                                        th:attr="onclick='rejectApproval(\'반려\', \'' + ${app.appSeq} + '\');'">확인</button>
+                            </div>
                         </td>
                     </form>
                 </tr>
