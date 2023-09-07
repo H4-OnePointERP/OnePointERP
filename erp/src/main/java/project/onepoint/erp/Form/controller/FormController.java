@@ -1,9 +1,10 @@
 package project.onepoint.erp.form.controller;
 
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import project.onepoint.erp.login.SessionConst;
+import project.onepoint.erp.login.dto.res.EmpSession;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,7 +21,7 @@ public class FormController {
     public ModelAndView viewMenu(HttpServletRequest request){
 
         ModelAndView mv = new ModelAndView("menuForm");
-        project.onepoint.erp.login.dto.res.EmpSession empSession = (project.onepoint.erp.login.dto.res.EmpSession) request.getSession().getAttribute(project.onepoint.erp.login.SessionConst.LOGIN_MEMBER);
+        EmpSession empSession = (EmpSession) request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
         mv.addObject("name", empSession.getEmpName());
 
         return mv;

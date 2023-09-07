@@ -14,9 +14,13 @@ import project.onepoint.erp.approval.dto.res.GetApprovalListRes;
 import project.onepoint.erp.approval.service.ApprovalService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
+import project.onepoint.erp.login.SessionConst;
+import project.onepoint.erp.login.dto.res.EmpSession;
 
 @Slf4j
 @Controller
@@ -33,7 +37,7 @@ public class ApprovalController {
     @GetMapping("/approval/dashboard")
     public ModelAndView getDashBoard(HttpServletRequest request) {
 
-        project.onepoint.erp.login.dto.res.EmpSession empSession = (project.onepoint.erp.login.dto.res.EmpSession) request.getSession().getAttribute(project.onepoint.erp.login.SessionConst.LOGIN_MEMBER);
+        EmpSession empSession = (EmpSession) request.getSession().getAttribute(project.onepoint.erp.login.SessionConst.LOGIN_MEMBER);
 
         ModelAndView mv = new ModelAndView("approval/dashboardform");
 
@@ -64,7 +68,7 @@ public class ApprovalController {
 
         ModelAndView mv = new ModelAndView("approval/approvalList");
 
-        project.onepoint.erp.login.dto.res.EmpSession empSession = (project.onepoint.erp.login.dto.res.EmpSession) request.getSession().getAttribute(project.onepoint.erp.login.SessionConst.LOGIN_MEMBER);
+        EmpSession empSession = (EmpSession) request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
 
         appStatusListReq.setEmpSeq(empSession.getEmpSeq());
 
@@ -88,6 +92,16 @@ public class ApprovalController {
 
         log.info("-------승인 반려{}", res);
 
-        return "redirect:/approval/list?status=%EC%8A%B9%EC%9D%B8%EC%9A%94%EC%B2%AD";
+        try {
+            // 한글 문자열을 URL 인코딩
+            String encodedStatus = URLEncoder.encode("승인요청", "UTF-8");
+
+            // redirect URL에 인코딩된 문자열 포함
+            return "redirect:/approval/list?status=" + encodedStatus;
+        } catch (UnsupportedEncodingException e) {
+            // 예외 처리 필요
+            e.printStackTrace();
+            return "redirect:/approval/list";
+        }
     }
 }
