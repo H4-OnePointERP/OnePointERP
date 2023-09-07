@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,15 +28,14 @@ public class ApprovalController {
     /**
      * 지출결의서 등록하는 API
      * @param request: session
-     * @param ModelAndView: 지출결의서 상세보기 정보
-     * @return: mv
+     * @return mv
      */
     @GetMapping("/approval/dashboard")
     public ModelAndView getDashBoard(HttpServletRequest request) {
 
         project.onepoint.erp.login.dto.res.EmpSession empSession = (project.onepoint.erp.login.dto.res.EmpSession) request.getSession().getAttribute(project.onepoint.erp.login.SessionConst.LOGIN_MEMBER);
 
-        ModelAndView mv = new ModelAndView("dashboardform");
+        ModelAndView mv = new ModelAndView("approval/dashboardform");
 
         DashBoardRes result = approvalService.getDashboard(empSession.getEmpSeq());
 
@@ -48,17 +46,23 @@ public class ApprovalController {
 
     @RequestMapping("/approval/register")
     public String viewRegister(){
-        return "approvalForm";
+        return "approval/approvalForm";
     }
 
+    /**
+     * 승인대기, 승인, 반려 등 리스트에 따라 보여주는 API
+     * @param request: httpservletRequest
+     * @param status: approvalTypeListForm
+     * @return mv
+     */
     @GetMapping("/approval/list")
-    public ModelAndView getApprovalStatusList(@RequestParam String status, HttpServletRequest request) {
+    public ModelAndView getApprovalStatusList(@RequestParam String status , HttpServletRequest request) {
 
         AppStatusListReq appStatusListReq = new AppStatusListReq();
 
         appStatusListReq.setStatus(status);
 
-        ModelAndView mv = new ModelAndView("approvalTypeListForm");
+        ModelAndView mv = new ModelAndView("approval/approvalList");
 
         project.onepoint.erp.login.dto.res.EmpSession empSession = (project.onepoint.erp.login.dto.res.EmpSession) request.getSession().getAttribute(project.onepoint.erp.login.SessionConst.LOGIN_MEMBER);
 
@@ -84,7 +88,6 @@ public class ApprovalController {
 
         log.info("-------승인 반려{}", res);
 
-        return "redirect:/approval/list?status=승인요청";
+        return "redirect:/approval/list?status=%EC%8A%B9%EC%9D%B8%EC%9A%94%EC%B2%AD";
     }
-
 }
