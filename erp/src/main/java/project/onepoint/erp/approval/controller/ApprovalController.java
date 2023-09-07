@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import project.onepoint.erp.approval.dto.req.ApprovalDetailReq;
 import project.onepoint.erp.approval.dto.req.ApprovalStatusReq;
 import project.onepoint.erp.approval.dto.req.AppStatusListReq;
 import project.onepoint.erp.approval.dto.res.DashBoardRes;
@@ -19,6 +20,9 @@ import java.net.URLEncoder;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
+import project.onepoint.erp.approval.service.ExpenditureService;
+import project.onepoint.erp.approval.service.LeaveService;
+import project.onepoint.erp.approval.service.LoaService;
 import project.onepoint.erp.login.SessionConst;
 import project.onepoint.erp.login.dto.res.EmpSession;
 
@@ -93,10 +97,10 @@ public class ApprovalController {
             mv.addObject("expenditureRes",expenditureService.selectExpenditureByAppSeq(approvalDetailReq.getAppSeq()));
         }else if (approvalDetailReq.getAppType().equals("APP_LEAVE")){
             mv = new ModelAndView("approval/leaveDetail");
-            mv.addObject("expenditureRes",leaveService.selectLeaveByAppSeq(approvalDetailReq.getAppSeq()));
+            mv.addObject("leaveRes",leaveService.selectLeaveByAppSeq(approvalDetailReq.getAppSeq()));
         }else if(approvalDetailReq.getAppType().equals("APP_LOA")){
             mv = new ModelAndView("approval/loaDetail");
-            mv.addObject("expenditureRes",loaService.selectLoaByAppSeq(approvalDetailReq.getAppSeq()));
+            mv.addObject("loaRes",loaService.selectLoaByAppSeq(approvalDetailReq.getAppSeq()));
         }
 
         return mv;
