@@ -4,7 +4,6 @@ import org.apache.ibatis.annotations.Mapper;
 import project.onepoint.erp.approval.dto.req.AppStatusListReq;
 import project.onepoint.erp.approval.dto.req.ApprovalReq;
 import project.onepoint.erp.approval.dto.req.ApprovalStatusReq;
-import project.onepoint.erp.approval.dto.res.ApprovalPendingRes;
 import project.onepoint.erp.approval.dto.res.ApproverRes;
 import project.onepoint.erp.approval.dto.res.DashBoardRes;
 import project.onepoint.erp.approval.dto.res.GetApprovalListRes;
