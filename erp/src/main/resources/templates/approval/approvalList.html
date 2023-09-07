@@ -24,7 +24,7 @@
         f.appendChild(obj);
         f.appendChild(obj2);
         f.setAttribute('method', 'post');
-        f.setAttribute('action', '/test');
+        f.setAttribute('action', '/approval/detail');
         document.body.appendChild(f);
         f.submit();
     }
@@ -64,8 +64,7 @@
                     <th>결재타입</th>
                     <th>작성자</th>
                     <th th:if="${type != '승인요청'}">상태</th>
-                    <th th:if="${type == '승인요청'}">액션</th> <!-- 추가: 액션 열 -->
-                    <th>상세보기</th>
+                    <th th:if="${type == '승인요청'}">승인/반려</th> <!-- 추가: 액션 열 -->
                 </tr>
                 </thead>
                 <tbody>

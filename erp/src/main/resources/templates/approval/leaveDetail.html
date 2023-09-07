@@ -29,6 +29,11 @@
             <input type="text" id="empName" name="empName" class="form-control"
                    th:value="${leaveRes.empName}" readonly>
         </div>
+        <div>
+            <label for="createdDT">작성날짜</label>
+            <input type="text" id="createdDT" name="createdDT" class="form-control"
+                   value="2023/08/23" th:value="${leaveRes.createdDT}" readonly>
+        </div>
 
         <div>
             <label for="approver">결재자</label>

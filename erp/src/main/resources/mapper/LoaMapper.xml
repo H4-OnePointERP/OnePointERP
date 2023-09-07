@@ -25,10 +25,12 @@
     <select id="selectLoaByAppSeq" parameterType="int" resultType="LoaRes">
         select
         A.app_seq AS appSeq,
+        TO_CHAR(A.CREATED_DT,'YYYY-MM-DD') AS createdDT,
         (SELECT EMP_NAME FROM EMPLOYEE
         WHERE EMP_SEQ =
         (SELECT approver FROM approval
         WHERE APP_SEQ=#{appSeq})) AS approver,
+        (SELECT EMP_NAME FROM EMPLOYEE WHERE EMP_SEQ = (SELECT emp_seq FROM approval WHERE APP_SEQ=#{appSeq})) AS empName,
         A.app_status AS appStatus,
         A.reject_reason AS rejectReason,
         L.app_seq AS appSeq,

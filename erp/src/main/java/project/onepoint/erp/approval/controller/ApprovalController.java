@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import project.onepoint.erp.approval.dto.req.ApprovalDetailReq;
 import project.onepoint.erp.approval.dto.req.ApprovalStatusReq;
 import project.onepoint.erp.approval.dto.req.AppStatusListReq;
 import project.onepoint.erp.approval.dto.res.DashBoardRes;
@@ -19,6 +20,9 @@ import java.net.URLEncoder;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
+import project.onepoint.erp.approval.service.ExpenditureService;
+import project.onepoint.erp.approval.service.LeaveService;
+import project.onepoint.erp.approval.service.LoaService;
 import project.onepoint.erp.login.SessionConst;
 import project.onepoint.erp.login.dto.res.EmpSession;
 
@@ -27,7 +31,11 @@ import project.onepoint.erp.login.dto.res.EmpSession;
 @RequiredArgsConstructor
 public class ApprovalController {
 
+
     private final ApprovalService approvalService;
+    private final ExpenditureService expenditureService;
+    private final LeaveService leaveService;
+    private final LoaService loaService;
 
     /**
      * 지출결의서 등록하는 API
@@ -77,6 +85,23 @@ public class ApprovalController {
         mv.addObject("type", appStatusListReq.getStatus());
 
         mv.addObject("approvals", result);
+
+        return mv;
+    }
+    @PostMapping("/approval/detail")
+    public ModelAndView selectApprovalDetail(@ModelAttribute("approvalDetailReq") ApprovalDetailReq approvalDetailReq){
+        ModelAndView mv = null;
+
+        if(approvalDetailReq.getAppType().equals("APP_ER")){
+            mv = new ModelAndView("approval/expenditureDetail");
+            mv.addObject("expenditureRes",expenditureService.selectExpenditureByAppSeq(approvalDetailReq.getAppSeq()));
+        }else if (approvalDetailReq.getAppType().equals("APP_LEAVE")){
+            mv = new ModelAndView("approval/leaveDetail");
+            mv.addObject("leaveRes",leaveService.selectLeaveByAppSeq(approvalDetailReq.getAppSeq()));
+        }else if(approvalDetailReq.getAppType().equals("APP_LOA")){
+            mv = new ModelAndView("approval/loaDetail");
+            mv.addObject("loaRes",loaService.selectLoaByAppSeq(approvalDetailReq.getAppSeq()));
+        }
 
         return mv;
     }

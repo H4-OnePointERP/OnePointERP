@@ -37,6 +37,11 @@
     </div>
 
     <div>
+        <label for="createdDT">작성날짜</label>
+        <input type="text" id="createdDT" name="createdDT" class="form-control"
+               value="2023/08/23" th:value="${loaRes.createdDT}" readonly>
+    </div>
+    <div>
         <label for="loaText">내용</label>
         <textarea id="loaText" name="loaText" class="form-control"
                   th:text="${loaRes.loaText}" readonly></textarea>
