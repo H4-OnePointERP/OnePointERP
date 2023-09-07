@@ -1,14 +1,12 @@
 package project.onepoint.erp.approval.controller;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import project.onepoint.erp.approval.dto.req.ApprovalStatusReq;
 import project.onepoint.erp.approval.dto.req.AppStatusListReq;
 import project.onepoint.erp.approval.dto.res.DashBoardRes;
 import project.onepoint.erp.approval.dto.res.GetApprovalListRes;
@@ -17,14 +15,11 @@ import project.onepoint.erp.approval.service.ApprovalService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-import org.springframework.web.bind.annotation.*;
-
-@Slf4j
 @Controller
-@RequiredArgsConstructor
 public class ApprovalController {
 
-    private final ApprovalService approvalService;
+    @Autowired
+    ApprovalService approvalService;
 
     /**
      * 지출결의서 등록하는 API
@@ -71,20 +66,6 @@ public class ApprovalController {
         mv.addObject("approvals", result);
 
         return mv;
-    }
-
-
-
-    @PostMapping("/approval/{appStatus}")
-    public String setAppApprove(@PathVariable String appStatus,
-                                @ModelAttribute ApprovalStatusReq approvalStatusReq){
-
-        approvalStatusReq.setAppStatus(appStatus);
-        int res = approvalService.updateAppStatus(approvalStatusReq);
-
-        log.info("-------승인 반려{}", res);
-
-        return "redirect:/approval/list?status=승인요청";
     }
 
 }
