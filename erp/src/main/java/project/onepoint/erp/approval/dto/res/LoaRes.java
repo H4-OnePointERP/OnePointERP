@@ -14,7 +14,7 @@ public class LoaRes {
     private String appStatus;
     private String appType;
     private String approver;
-    private LocalDateTime createdDT;
+    private String createdDT;
     private String empName;
     private String rejectReason;
 }

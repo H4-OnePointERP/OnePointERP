@@ -12,13 +12,13 @@ public class ExpenditureRes {
 
     private String empName;
 
-    private LocalDateTime createdDt;
+    private String createdDt;
 
     private String erTitle;
 
     private String approver;
 
-    private LocalDateTime erDt;
+    private String erDt;
 
     private String erText;
 

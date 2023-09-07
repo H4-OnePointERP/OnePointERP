@@ -13,12 +13,12 @@ public class LeaveRes {
     private int appSeq;
     private String leaveType;
     private String leaveText;
-    private LocalDateTime leaveStDt;
-    private LocalDateTime leaveEndDt;
+    private String leaveStDt;
+    private String leaveEndDt;
     private String approver;
     private String appStatus;
     private String appType;
-    private LocalDateTime createdDT;
+    private String createdDT;
     private String empName;
     private String rejectReason;
 }
