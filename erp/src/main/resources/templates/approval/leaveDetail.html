@@ -86,9 +86,8 @@
 
             <div class="col">
                 <button class="w-100 btn btn-secondary btn-lg"
-                        onclick="location.href='/approval/dashboard'"
-                        th:onclick="|location.href='@{/approval/dashboard}'|"
-                        type="button">뒤로가기</button>
+                        onclick="history.back();"
+                        type="button">목록으로</button>
             </div>
         </div>
     </form>

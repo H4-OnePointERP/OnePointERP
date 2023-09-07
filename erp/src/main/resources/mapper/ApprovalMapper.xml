@@ -92,6 +92,9 @@
     <update id="updateAppStatus" parameterType="ApprovalStatusReq">
         UPDATE APPROVAL A
         SET     A.APP_STATUS = #{appStatus}
+        <if test="rejectReason != null and !rejectReason.equals('')">
+            ,   A.REJECT_REASON = #{rejectReason}
+        </if>
         WHERE A.APP_SEQ = #{appSeq}
     </update>
 

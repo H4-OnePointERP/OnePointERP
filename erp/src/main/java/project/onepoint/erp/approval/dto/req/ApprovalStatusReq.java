@@ -8,5 +8,6 @@ public class ApprovalStatusReq {
 
     private int appSeq;
     private String appStatus;
+    private String rejectReason;
 
 }
