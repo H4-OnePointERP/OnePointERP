@@ -31,17 +31,19 @@
     <select id="selectLeaveByAppSeq" parameterType="int" resultType="LeaveRes">
         select
         A.app_seq AS appSeq,
+        TO_CHAR(A.CREATED_DT,'YYYY-MM-DD') AS createdDT,
         (SELECT EMP_NAME FROM EMPLOYEE
         WHERE EMP_SEQ =
         (SELECT approver FROM approval
         WHERE APP_SEQ=#{appSeq})) AS approver,
+        (SELECT EMP_NAME FROM EMPLOYEE WHERE EMP_SEQ = (SELECT emp_seq FROM approval WHERE APP_SEQ=#{appSeq})) AS empName,
         A.app_status AS appStatus,
         A.reject_reason AS rejectReason,
         L.app_seq AS appSeq,
         L.leave_type AS leaveType,
         L.leave_text AS leaveText,
-        L.leave_st_dt AS leaveStDt,
-        L.leave_end_dt AS leaveEndDt
+        TO_CHAR(L.leave_st_dt,'YYYY-MM-DD') AS leaveStDt,
+        TO_CHAR(L.leave_end_dt,'YYYY-MM-DD') AS leaveEndDt
         from APP_LEAVE L
         inner join APPROVAL A
         on L.app_seq = A.app_seq

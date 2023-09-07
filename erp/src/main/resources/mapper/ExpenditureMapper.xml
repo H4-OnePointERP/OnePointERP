@@ -28,10 +28,11 @@
     <select id="selectExpenditureByAppSeq" parameterType="int" resultType="ExpenditureRes">
         SELECT
         A.EMP_SEQ AS empSeq,
-        A.CREATED_DT AS createdDt,
+        TO_CHAR(A.CREATED_DT,'YYYY-MM-DD') AS createdDt,
         E.ER_TITLE AS erTitle,
         (SELECT EMP_NAME FROM EMPLOYEE WHERE EMP_SEQ = (SELECT approver FROM approval WHERE APP_SEQ=#{appSeq})) AS approver,
-        E.ER_DT AS erDt,
+        (SELECT EMP_NAME FROM EMPLOYEE WHERE EMP_SEQ = (SELECT emp_seq FROM approval WHERE APP_SEQ=#{appSeq})) AS empName,
+        TO_CHAR(E.ER_DT,'YYYY-MM-DD') AS erDt,
         E.ER_TEXT AS erText,
         E.ER_AMOUNT AS erAmount,
         A.APP_STATUS AS appStatus,
