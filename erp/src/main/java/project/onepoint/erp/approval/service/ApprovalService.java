@@ -2,6 +2,7 @@ package project.onepoint.erp.approval.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import project.onepoint.erp.approval.dto.req.ApprovalStatusReq;
 import project.onepoint.erp.approval.dto.req.AppStatusListReq;
 import project.onepoint.erp.approval.dto.res.ApproverRes;
 import project.onepoint.erp.approval.dto.res.DashBoardRes;
@@ -32,5 +33,9 @@ public class ApprovalService {
 
     public List<GetApprovalListRes> getApprovalStatusList(AppStatusListReq appStatusListReq) {
         return approvalMapper.getApprovalStatusList(appStatusListReq);
+    }
+
+    public int updateAppStatus(ApprovalStatusReq approvalStatusReq){
+        return approvalMapper.updateAppStatus(approvalStatusReq);
     }
 }
