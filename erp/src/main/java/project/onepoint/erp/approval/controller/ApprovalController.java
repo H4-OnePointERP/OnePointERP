@@ -27,7 +27,11 @@ import project.onepoint.erp.login.dto.res.EmpSession;
 @RequiredArgsConstructor
 public class ApprovalController {
 
+
     private final ApprovalService approvalService;
+    private final ExpenditureService expenditureService;
+    private final LeaveService leaveService;
+    private final LoaService loaService;
 
     /**
      * 지출결의서 등록하는 API
@@ -77,6 +81,23 @@ public class ApprovalController {
         mv.addObject("type", appStatusListReq.getStatus());
 
         mv.addObject("approvals", result);
+
+        return mv;
+    }
+    @PostMapping("/approval/detail")
+    public ModelAndView selectApprovalDetail(@ModelAttribute("approvalDetailReq") ApprovalDetailReq approvalDetailReq){
+        ModelAndView mv = null;
+
+        if(approvalDetailReq.getAppType().equals("APP_ER")){
+            mv = new ModelAndView("approval/expenditureDetail");
+            mv.addObject("expenditureRes",expenditureService.selectExpenditureByAppSeq(approvalDetailReq.getAppSeq()));
+        }else if (approvalDetailReq.getAppType().equals("APP_LEAVE")){
+            mv = new ModelAndView("approval/leaveDetail");
+            mv.addObject("expenditureRes",leaveService.selectLeaveByAppSeq(approvalDetailReq.getAppSeq()));
+        }else if(approvalDetailReq.getAppType().equals("APP_LOA")){
+            mv = new ModelAndView("approval/loaDetail");
+            mv.addObject("expenditureRes",loaService.selectLoaByAppSeq(approvalDetailReq.getAppSeq()));
+        }
 
         return mv;
     }
