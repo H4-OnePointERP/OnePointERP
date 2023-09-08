@@ -46,4 +46,14 @@
 
     </select>
 
+    <update id="updateExpenditure" parameterType="ExpenditureUpdateReq">
+
+        UPDATE APP_ER E
+        SET E.ER_TITLE = #{erTitle},
+            E.ER_TEXT = #{erText},
+            E.ER_AMOUNT = #{erAmount},
+            E.ER_DT = #{erDt}
+        WHERE E.APP_SEQ = #{appSeq}
+    </update>
+
 </mapper>

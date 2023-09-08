@@ -27,8 +27,8 @@
       <input type="text" id="empName" name="empName" th:value="${expenditureReq.empName}" class="form-control" placeholder="작성자  " readonly>
     </div>
     <div>
-      <label for="erTitle">제목</label> <span th:text="${expenditureReq.erTitle}"></span>
-      <input type="text" id="erTitle" name="erTitle" class="form-control" placeholder="제목을 입력하세요">
+      <label for="erTitle">제목</label>
+      <input type="text" id="erTitle" name="erTitle" th:value="${expenditureReq.erTitle}" class="form-control" placeholder="제목을 입력하세요">
     </div>
     <div>
         <select th:name="approver">
@@ -37,16 +37,16 @@
         </select>
     </div>
     <div>
-      <label for="erDt">결제일자</label> <span th:text="${expenditureReq.erDt}"></span>
-      <input type="text" id="erDt" name="erDt" class="form-control" placeholder="결제일자를 입력하세요"></input>
+      <label for="erDt">결제일자</label>
+      <input type="text" id="erDt" name="erDt" th:value="${expenditureReq.erDt}" class="form-control" placeholder="결제일자를 입력하세요"></input>
     </div>
     <div>
-      <label for="erText">사용내용</label> <span th:text="${expenditureReq.erText}"></span>
-      <input type="text" id="erText" name="erText" class="form-control" placeholder="사용내역을 입력하세요">
+      <label for="erText">사용내용</label>
+      <input type="text" id="erText" name="erText" th:value="${expenditureReq.erText}" class="form-control" placeholder="사용내역을 입력하세요">
     </div>
     <div>
-      <label for="erAmount">금액</label> <span th:text="${expenditureReq.erAmount}"></span>
-      <input type="text" id="erAmount" name="erAmount" class="form-control" placeholder="금액을 입력하세요">
+      <label for="erAmount">금액</label>
+      <input type="text" id="erAmount" name="erAmount" th:value="${expenditureReq.erAmount}" class="form-control" placeholder="금액을 입력하세요">
     </div>
 
 

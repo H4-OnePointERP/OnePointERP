@@ -98,5 +98,11 @@
         WHERE A.APP_SEQ = #{appSeq}
     </update>
 
+    <update id="updateApproval" parameterType="ExpenditureUpdateReq">
+        UPDATE APPROVAL A
+        SET A.APPROVER= #{approver},
+            A.UPDATED_DT = SYSDATE
+        WHERE A.APP_SEQ = #{appSeq}
+    </update>
 
 </mapper>
