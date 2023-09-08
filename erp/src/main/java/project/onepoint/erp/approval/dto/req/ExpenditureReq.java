@@ -1,7 +1,9 @@
 package project.onepoint.erp.approval.dto.req;
 
+import lombok.Builder;
 import lombok.Data;
 
+@Builder
 @Data
 public class ExpenditureReq {
 
