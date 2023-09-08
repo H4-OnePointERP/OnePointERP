@@ -94,7 +94,7 @@ public class ApprovalController {
 
         if(approvalDetailReq.getAppType().equals("APP_ER")){
             mv = new ModelAndView("approval/expenditureDetail");
-            mv.addObject("expenditureRes",expenditureService.selectExpenditureByAppSeq(approvalDetailReq.getAppSeq()));
+            mv.addObject("expenditureRes", expenditureService.selectExpenditureByAppSeq(approvalDetailReq.getAppSeq()));
         }else if (approvalDetailReq.getAppType().equals("APP_LEAVE")){
             mv = new ModelAndView("approval/leaveDetail");
             mv.addObject("leaveRes",leaveService.selectLeaveByAppSeq(approvalDetailReq.getAppSeq()));
@@ -103,6 +103,7 @@ public class ApprovalController {
             mv.addObject("loaRes",loaService.selectLoaByAppSeq(approvalDetailReq.getAppSeq()));
         }
 
+        mv.addObject("appSeq",approvalDetailReq.getAppSeq());
         return mv;
     }
 

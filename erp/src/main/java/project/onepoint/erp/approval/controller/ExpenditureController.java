@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import project.onepoint.erp.approval.dto.req.ExpenditureReq;
+import project.onepoint.erp.approval.dto.req.ExpenditureUpdateReq;
 import project.onepoint.erp.approval.dto.res.ExpenditureRes;
 import project.onepoint.erp.approval.service.ApprovalService;
 import project.onepoint.erp.approval.service.ExpenditureService;
@@ -65,6 +66,43 @@ public class ExpenditureController {
         return mv;
     }
 
+    @PostMapping("/approval/updateExpenditureForm")
+    public ModelAndView updateExpenditureForm(@ModelAttribute ExpenditureRes expenditureRes,
+                                              @ModelAttribute("appSeq") int appSeq,
+                                              HttpServletRequest request){
 
+        EmpSession empSession = (EmpSession) request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
+        ModelAndView mv = new ModelAndView("approval/expenditureUpdateForm");
+
+        ExpenditureUpdateReq form = ExpenditureUpdateReq.builder()
+                .appSeq(appSeq)
+                .empName(expenditureRes.getEmpName())
+                .erAmount(expenditureRes.getErAmount())
+                .erTitle(expenditureRes.getErTitle())
+                .erText(expenditureRes.getErText())
+                .erDt(expenditureRes.getErDt())
+                .createdDt(expenditureRes.getCreatedDt())
+                .appStatus(expenditureRes.getAppStatus())
+                .rejectReason(expenditureRes.getRejectReason())
+                .build();
+
+        mv.addObject("approverList",approvalService.selectApproverList(empSession.getEmpSeq()));
+        mv.addObject("expenditureUpdateReq", form);
+        return mv;
+    }
+
+
+    @PostMapping("/approval/updateExpenditure")
+    public ModelAndView updateExpenditure(@ModelAttribute ExpenditureUpdateReq expenditureUpdateReq,
+                                    HttpServletRequest request) {
+
+        EmpSession empSession = (EmpSession) request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
+
+        //update 기능 추가
+
+        ModelAndView mv = new ModelAndView("approval/expenditureDetail");
+        mv.addObject("expenditureRes", expenditureService.updateExpenditure(expenditureUpdateReq));
+        return mv;
+    }
 
 }
