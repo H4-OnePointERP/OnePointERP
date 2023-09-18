@@ -55,6 +55,9 @@
             <if test="(empSeq != null and status != '승인요청')">
                 AND a.EMP_SEQ = #{empSeq}
             </if>
+            <if test="(status == 'all')">
+                AND a.EMP_SEQ = #{empSeq}  AND a.APP_STATUS IN ('승인', '반려', '승인대기')
+            </if>
         </where>
     </select>
 
